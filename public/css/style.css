@@ -106,15 +106,19 @@ header {
 }
 
 #events-container .card {
-    flex: 1 1 0;
+    flex: 1 1 24%;
     max-width: 25%;
     border-radius: 10px;
     padding: 0;
-    margin: 5px;
+    margin: .5%;
+    overflow: hidden; /* Adicionado para garantir que a imagem não ultrapasse os limites do contêiner */
 }
 
 #events-container img {
-    max-height: 200px;
+    max-height: 230px;
+    width: 100%; /* Faz a imagem ocupar 100% da largura do contêiner */
+    height: 100%; /* Faz a imagem ocupar 100% da altura do contêiner */
+    object-fit: cover; /* Mantém a proporção e corta para preencher o contêiner */
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -151,6 +155,47 @@ header {
 #event-create-container textarea {
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+/* Event Page */
+
+#image-container,
+#info-container {
+    margin-top: 30px;
+}
+
+#image-container img {
+    border-radius: 10px;
+    width: 750px; /* Largura desejada em pixels */
+    height: 500px; /* Altura desejada em pixels */
+    object-fit: cover; /* Mantém a proporção e corta para preencher a caixa */
+}
+
+#info-container h1 {
+    font-size: 36px;
+    font-weight: 900;
+}
+
+#info-container p {
+    margin: 0;
+    font-size: 18px;
+    display: flex;
+}
+
+#info-container h3,
+#description-container h3 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#info-container ion-icon {
+    font-size: 20px;
+    color: #F2A340;
+    margin-right: 5px;
+}
+
+#info-container #event-submit {
+    margin: 20px 0;
 }
 
 /* footer */
