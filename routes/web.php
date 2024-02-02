@@ -35,3 +35,12 @@ Route::post('/events', [EventController::class, 'store']); //enviar os dados no 
 //Route::get('/produtos_testes/{id?}', function ($id = null) {
 //    return view('product', ['id' => $id]);
 //});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
