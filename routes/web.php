@@ -20,10 +20,8 @@ Route::get('/events/{id}', [EventController::class, 'show']); //mostra um dado e
 Route::post('/events', [EventController::class, 'store']); //enviar os dados no banco
 Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('auth');
 Route::delete('/events/{id}', [EventController::class, 'destroy'])->middleware('auth');
-Route::get('/events/{id}', [EventController::class, 'edit'])->middleware('auth');
-
-
-
+Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('auth');
+Route::put('/events/update/{id}', [EventController::class, 'update'])->middleware('auth');
 
 //Route::get('/contact', function () {
 //    return view('contact');

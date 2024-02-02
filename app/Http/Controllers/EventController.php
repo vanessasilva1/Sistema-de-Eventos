@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
 
+
 class EventController extends Controller
 {
     /*public function index() {
@@ -111,4 +112,20 @@ class EventController extends Controller
         return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso!');
 
     }
+
+    public function edit($id) {
+
+        $event = Event::findOrFail($id);
+
+        return view('events.edit', ['event' => $event]); //resgatamos os dados do bando e enviamos para essa view chamada edit
+    }
+
+    public function update(Request $request) {
+
+        Event::findOrFail($request->id)->update($request->all());
+
+        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
+
+    }
+
 }
