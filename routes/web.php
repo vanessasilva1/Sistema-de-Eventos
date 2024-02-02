@@ -18,6 +18,10 @@ Route::get('/', [EventController::class, 'index']); //mostra todos os registros.
 Route::get('/events/create', [EventController::class, 'create'])->middleware('auth'); //Criar com registro no banco. middleware('auth') ->usuário só tem acesso se estiver logado
 Route::get('/events/{id}', [EventController::class, 'show']); //mostra um dado específico
 Route::post('/events', [EventController::class, 'store']); //enviar os dados no banco
+Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('auth');
+Route::delete('/events/{id}', [EventController::class, 'destroy'])->middleware('auth');
+Route::get('/events/{id}', [EventController::class, 'edit'])->middleware('auth');
+
 
 
 
@@ -35,12 +39,3 @@ Route::post('/events', [EventController::class, 'store']); //enviar os dados no 
 //Route::get('/produtos_testes/{id?}', function ($id = null) {
 //    return view('product', ['id' => $id]);
 //});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
