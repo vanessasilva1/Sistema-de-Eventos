@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -69,11 +70,14 @@ class EventController extends Controller
 
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension; //Nome do path no banco
 
-            $requestImage->move(public_path('img/events'), $imageName); //salvar a imagem no servidor, como o nome definido na linha acima
+            $requestImage->move(public_path('img/events'), $imageName); //salva a imagem no servidor, como o nome definido na linha acima
 
             $event->image = $imageName; //salva no banco
 
         }
+
+        $user = auth()->user(); //estou pegando o usuário logado
+        $event->user_id = $user->id; //acessando a propriedade ID do usuário logado
 
         $event->save();
 
@@ -83,7 +87,10 @@ class EventController extends Controller
     public function show($id) {
 
         $event = Event::findOrFail($id); //view resgatada que o cliente solicitou
-        return view('events.show', ['event' => $event]);
+
+        $eventOwner = User::where('id', $event->user_id)->first()->toArray(); //Descobre o dono do evento: Vai fazer uma busca no banco, e o primeiro que ele encontrar com esse id idêntico, ele vai trazer em forma de array
+
+        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
 
     }
 }
