@@ -40,22 +40,24 @@
         <div class="form-group">
             <label for="title">Adicione itens de infraestrutura:</label>
             <div class="form-group">
-                <input type="checkbox" name="items[]" value="Cadeiras"> Cadeiras
+                <input type="checkbox" name="items[]" value="Cadeiras" {{ (in_array("Cadeiras", $event->items)) ? 'checked' : '' }}> Cadeiras
             </div>
             <div class="form-group">
-                <input type="checkbox" name="items[]" value="Palco"> Palco
+                <input type="checkbox" name="items[]" value="Palco" {{ (in_array("Palco", $event->items)) ? 'checked' : '' }}> Palco
             </div>
             <div class="form-group">
-                <input type="checkbox" name="items[]" value="Bebidas"> Bebidas
+                <input type="checkbox" name="items[]" value="Bebidas" {{ (in_array("Bebidas", $event->items)) ? 'checked' : '' }}> Bebidas
             </div>
             <div class="form-group">
-                <input type="checkbox" name="items[]" value="Open Food"> Open Food
+                <input type="checkbox" name="items[]" value="Open Food" {{ (in_array("Open Food", $event->items)) ? 'checked' : '' }}> Open Food
             </div>
             <div class="form-group">
-                <input type="checkbox" name="items[]" value="Brindes"> Brindes
+                <input type="checkbox" name="items[]" value="Brindes" {{ (in_array("Brindes", $event->items)) ? 'checked' : '' }}> Brindes
             </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Editar Evento">
+
+        
     </form>
 </div>
 
